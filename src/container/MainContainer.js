@@ -1,10 +1,9 @@
 import React from "react";
+import MainScreen from '../screen/MainScreen';
 
 const MainContainer = (props) => {
     return (
-        <div className="main-container">
-            hello this is main container
-        </div>
+        <MainScreen {...props} />
     );
 }
 
