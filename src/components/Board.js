@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Square from './Square';
 
-function Board({ xIsNext, squares, onPlay, onWin }) {
-    const [winningLine, setWinningLine] = React.useState(null);
+const Board = (props) => {
+    const { xIsNext, squares, onPlay, onWin, onDraw } = props;
+    const [winningLine, setWinningLine] = useState(null);
+    const [emptySquare, setEmptySquare] = useState(8); // Track the empty squares
 
     function handleClick(i) {
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
         const nextSquares = squares.slice();
+        setEmptySquare(emptySquare - 1);
         if (xIsNext) {
             nextSquares[i] = 'X';
         } else {
             nextSquares[i] = 'O';
         }
-
         const result = calculateWinner(nextSquares);
         if (result) {
             onWin(result.winner);
@@ -22,13 +24,15 @@ function Board({ xIsNext, squares, onPlay, onWin }) {
         } else {
             setWinningLine(null);
         }
-
+        if (emptySquare === 0) {
+            onDraw();
+        }
         onPlay(nextSquares);
     }
 
-    // Reset winning line when board is cleared
-    React.useEffect(() => {
+    useEffect(() => {
         if (squares.every(s => s === null)) {
+            setEmptySquare(9);
             setWinningLine(null);
         }
     }, [squares]);

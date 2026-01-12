@@ -1,7 +1,7 @@
-import React from 'react';
 import '../NeonTheme.css';
 
-function Square({ value, onSquareClick, isWinningSquare }) {
+const Square = (props) => {
+    const { value, onSquareClick, isWinningSquare } = props;
     let styleClass = "";
 
     if (value === 'X') {
