@@ -1,4 +1,4 @@
-import '../NeonTheme.css';
+import '../../NeonTheme.css';
 
 const Square = (props) => {
     const { value, onSquareClick, isWinningSquare } = props;
