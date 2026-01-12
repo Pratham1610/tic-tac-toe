@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Board from "../components/Board";
+import Board from "../container/components/Board";
 import "../NeonTheme.css";
 
 const MainScreen = (props) => {
@@ -100,7 +99,6 @@ const MainScreen = (props) => {
         </div>
       </div>
 
-      {/* Restart Button */}
       <button onClick={resetGame} className="restart-btn">
         RESTART
       </button>
